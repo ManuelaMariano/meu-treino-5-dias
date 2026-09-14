@@ -1,0 +1,16 @@
+{
+  "name": "Meu Treino 5 Dias",
+  "short_name": "Meu Treino",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fff8fc",
+  "theme_color": "#b24d8c",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
