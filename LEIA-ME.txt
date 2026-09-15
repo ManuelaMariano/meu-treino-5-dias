@@ -1,19 +1,18 @@
-MEU TREINO 5 DIAS
+MEU TREINO 5 DIAS — ATUALIZADO
 
-Arquivos incluídos:
+Atualização desta versão:
+- Dia 2: adicionada Remada curvada — 3 × 10–12 como exercício extra.
+
+COMO ATUALIZAR NO GITHUB PELO CELULAR:
+1. Extraia este ZIP.
+2. Abra o repositório meu-treino-5-dias.
+3. Envie os arquivos para a raiz do repositório.
+4. Substitua os arquivos antigos.
+5. Faça o commit.
+6. Se o GitHub Pages já estiver ativo, o site será atualizado automaticamente.
+
+Arquivos:
 - index.html
 - manifest.json
 - service-worker.js
 - icon.svg
-
-COMO PUBLICAR NO GITHUB:
-1. Abra seu repositório meu-treino-5-dias.
-2. Toque em Add file > Upload files.
-3. Extraia este ZIP no celular e envie os 4 arquivos acima.
-4. Faça o commit.
-5. Vá em Settings > Pages.
-6. Em Build and deployment, escolha Deploy from a branch.
-7. Branch: main / (root) e salve.
-8. Depois de alguns minutos, o GitHub mostrará o link do site.
-
-No Chrome, abra o link publicado e use "Adicionar à tela inicial" ou "Instalar app".
