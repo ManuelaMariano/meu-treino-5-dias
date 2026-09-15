@@ -1,18 +1,12 @@
-MEU TREINO 5 DIAS — ATUALIZADO
+MEU TREINO 5 DIAS — SEM ROSCA NA POLIA
 
-Atualização desta versão:
-- Dia 2: adicionada Remada curvada — 3 × 10–12 como exercício extra.
+Dia 2:
+- Puxada alta — 3 × 10–12
+- Remada baixa — 3 × 10–12
+- Remada articulada — 3 × 10–12
+- Puxada baixa — 3 × 10–12
+- Rosca bíceps na máquina — 3 × 10–12
+- Remada curvada — 3 × 10–12 (EXTRA)
 
-COMO ATUALIZAR NO GITHUB PELO CELULAR:
-1. Extraia este ZIP.
-2. Abra o repositório meu-treino-5-dias.
-3. Envie os arquivos para a raiz do repositório.
-4. Substitua os arquivos antigos.
-5. Faça o commit.
-6. Se o GitHub Pages já estiver ativo, o site será atualizado automaticamente.
-
-Arquivos:
-- index.html
-- manifest.json
-- service-worker.js
-- icon.svg
+A Rosca bíceps na polia foi removida.
+Envie/substitua TODOS os arquivos no GitHub para atualizar também o cache do app.

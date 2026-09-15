@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meu Treino 5 Dias</title>
 <meta name="theme-color" content="#b24d8c">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="manifest.json?v=5">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
 :root{
@@ -38,6 +38,7 @@ header p{margin:5px 0 0;font-size:13px;opacity:.95}
 input[type="checkbox"]{width:22px;height:22px;accent-color:var(--accent);margin-top:2px}
 .name{font-size:17px;font-weight:800;line-height:1.25}
 .sets{font-size:14px;color:var(--muted);font-weight:700;margin-top:4px}
+.extra{display:inline-block;margin-top:6px;padding:3px 8px;border-radius:999px;background:#f4e4ee;color:#8d3f70;font-size:11px;font-weight:800}
 .fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
 label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
 input[type="text"]{width:100%;border:1px solid #d8cad3;border-radius:10px;padding:10px;font-size:15px;background:#fff}
@@ -46,7 +47,7 @@ input[type="text"]{width:100%;border:1px solid #d8cad3;border-radius:10px;paddin
 </style>
 <script>
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js'));
+  window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js?v=5'));
 }
 </script>
 </head>
@@ -84,12 +85,12 @@ const data = {
   ["Glúteo na máquina / coice","3 × 12 cada perna"]
  ],
  d2:[
-  ["Puxada alta","3 × 10–12"],
-  ["Remada baixa","3 × 10–12"],
-  ["Remada articulada","3 × 10–12"],
-  ["Rosca bíceps na máquina","3 × 10–12"],
-  ["Rosca bíceps na polia","3 × 10–12"],
-  ["Remada curvada","3 × 10–12"]
+  ["Puxada alta","3 × 10–12","",0],
+  ["Remada baixa","3 × 10–12","",1],
+  ["Remada articulada","3 × 10–12","",2],
+  ["Puxada baixa","3 × 10–12","",6],
+  ["Rosca bíceps na máquina","3 × 10–12","",3],
+  ["Remada curvada","3 × 10–12","extra",5]
  ],
  d3:[
   ["Cadeira extensora","3 × 10–12"],
@@ -120,43 +121,45 @@ const key=(day,idx,field)=>`treinoTexto_${day}_${idx}_${field}`;
 Object.entries(data).forEach(([day,exercises])=>{
   const sec=document.getElementById(day);
   exercises.forEach((ex,idx)=>{
+    const storageId = ex.length > 3 ? ex[3] : idx;
     const card=document.createElement("div");
     card.className="exercise";
     card.innerHTML=`
       <div class="top">
-        <input type="checkbox" id="${day}_${idx}_done">
+        <input type="checkbox" id="${day}_${storageId}_done">
         <div>
           <div class="name">${ex[0]}</div>
           <div class="sets">${ex[1]}</div>
+          ${ex[2]==="extra" ? '<span class="extra">EXTRA</span>' : ''}
         </div>
       </div>
       <div class="fields">
         <div>
           <label>Carga</label>
-          <input type="text" id="${day}_${idx}_load" placeholder="Ex.: 20 kg">
+          <input type="text" id="${day}_${storageId}_load" placeholder="Ex.: 20 kg">
         </div>
         <div>
           <label>Observação</label>
-          <input type="text" id="${day}_${idx}_note" placeholder="Ex.: aumentar próxima vez">
+          <input type="text" id="${day}_${storageId}_note" placeholder="Ex.: aumentar próxima vez">
         </div>
       </div>`;
     sec.appendChild(card);
 
-    const done=card.querySelector(`#${day}_${idx}_done`);
-    const load=card.querySelector(`#${day}_${idx}_load`);
-    const note=card.querySelector(`#${day}_${idx}_note`);
+    const done=card.querySelector(`#${day}_${storageId}_done`);
+    const load=card.querySelector(`#${day}_${storageId}_load`);
+    const note=card.querySelector(`#${day}_${storageId}_note`);
 
-    done.checked=localStorage.getItem(key(day,idx,"done"))==="1";
-    load.value=localStorage.getItem(key(day,idx,"load"))||"";
-    note.value=localStorage.getItem(key(day,idx,"note"))||"";
+    done.checked=localStorage.getItem(key(day,storageId,"done"))==="1";
+    load.value=localStorage.getItem(key(day,storageId,"load"))||"";
+    note.value=localStorage.getItem(key(day,storageId,"note"))||"";
     card.classList.toggle("done",done.checked);
 
     done.onchange=()=>{
-      localStorage.setItem(key(day,idx,"done"),done.checked?"1":"0");
+      localStorage.setItem(key(day,storageId,"done"),done.checked?"1":"0");
       card.classList.toggle("done",done.checked);
     };
-    load.oninput=()=>localStorage.setItem(key(day,idx,"load"),load.value);
-    note.oninput=()=>localStorage.setItem(key(day,idx,"note"),note.value);
+    load.oninput=()=>localStorage.setItem(key(day,storageId,"load"),load.value);
+    note.oninput=()=>localStorage.setItem(key(day,storageId,"note"),note.value);
   });
 });
 
